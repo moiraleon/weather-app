@@ -33,5 +33,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        weatherState=findViewById(R.id.weatherCondition);
+        Temperature=findViewById(R.id.temperature);
+        mweatherIcon=findViewById(R.id.weatherIcon);
+        mCityFinder=findViewById(R.id.cityFinder);
+        NameofCity=findViewById(R.id.cityName);
+
     }
 }

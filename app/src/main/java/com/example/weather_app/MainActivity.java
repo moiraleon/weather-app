@@ -69,12 +69,35 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+/*
     @Override
     protected void onResume() {
         super.onResume();
         getWeatherForCurrentLocation();
+    } */
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent mIntent = getIntent();
+        String city =mIntent.getStringExtra("City");
+        if (city!=null){
+            getWeatherForNewCity(city);
+        }else{
+            getWeatherForCurrentLocation();
+        }
+
     }
+
+    private void getWeatherForNewCity(String city){
+        RequestParams params = new RequestParams();
+        params.put("q", city);
+        params.put("apikey", API_KEY);
+        letsDoSomeNetworking(params);
+    }
+
+
+
 
     private void getWeatherForCurrentLocation() {
 

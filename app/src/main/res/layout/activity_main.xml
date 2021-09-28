@@ -7,6 +7,14 @@
     android:background="#242343"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:id="@+id/weatherIcon"
+        android:layout_marginTop="80dp">
+
+    </ImageView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

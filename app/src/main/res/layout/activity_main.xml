@@ -14,7 +14,18 @@
     android:layout_marginLeft="30dp"
     android:layout_marginRight="30dp"
     android:layout_alignParentBottom="true"
-    android:id="@+id/cityFinder">
+    android:id="@+id/cityFinder"
+    android:layout_marginBottom="30dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search for a new city"
+        android:textColor="@color/white"
+        android:layout_centerInParent="true"
+        android:textSize="16sp">
+
+    </TextView>
+
 </RelativeLayout>
 
 </RelativeLayout>

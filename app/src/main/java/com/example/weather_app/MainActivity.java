@@ -2,9 +2,12 @@ package com.example.weather_app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -13,16 +16,17 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
 
-    final String API_KEY ="89e5ced9260f0649a78adcc4aab39776";
-    final String WEATHER_URL ="https://home.openweathermap.org/data/2.5/weather";
+    final String API_KEY = "89e5ced9260f0649a78adcc4aab39776";
+    final String WEATHER_URL = "https://home.openweathermap.org/data/2.5/weather";
 
-    final long MIN_TIME=5000;
+    final long MIN_TIME = 5000;
     final float MIN_DISTANCE = 1000;
-    final int REQUEST_CODE=101;
+    final int REQUEST_CODE = 101;
 
     String Location_Provider = LocationManager.GPS_PROVIDER;
 
@@ -40,11 +44,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        weatherState=findViewById(R.id.weatherCondition);
-        Temperature=findViewById(R.id.temperature);
-        mweatherIcon=findViewById(R.id.weatherIcon);
-        mCityFinder=findViewById(R.id.cityFinder);
-        NameofCity=findViewById(R.id.cityName);
+        weatherState = findViewById(R.id.weatherCondition);
+        Temperature = findViewById(R.id.temperature);
+        mweatherIcon = findViewById(R.id.weatherIcon);
+        mCityFinder = findViewById(R.id.cityFinder);
+        NameofCity = findViewById(R.id.cityName);
 
         mCityFinder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, cityFinder.class);
                 startActivity(intent);
 
-             }
+            }
         });
 
     }
@@ -64,32 +68,65 @@ public class MainActivity extends AppCompatActivity {
         getWeatherForCurrentLocation();
     }
 
-    private void getWeatherForCurrentLocation(){
+    private void getWeatherForCurrentLocation() {
 
-        mLocationManager=(LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        mLocationListener= new LocationListener() {
+        mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        mLocationListener = new LocationListener() {
             @Override
             public void onLocationChanged(@NonNull Location location) {
 
-            }
-
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras){
+                String Latitude = String.valueOf(location.getLatitude());
+                String Longitude = String.valueOf(location.getLongitude());
 
             }
 
             @Override
-            public void onProviderEnabled(String provider){
+            public void onStatusChanged(String provider, int status, Bundle extras) {
 
             }
 
             @Override
-            public void  onProviderDisabled(String provider){
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+                //unable to retrieve location
 
             }
         };
 
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        mLocationManager.requestLocationUpdates(Location_Provider, MIN_TIME, MIN_DISTANCE, mLocationListener);
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+
+        if(requestCode==REQUEST_CODE){
+
+            if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(MainActivity.this, "Locationget Succesfully", Toast.LENGTH_SHORT).show();
+            getWeatherForCurrentLocation();
+            }
+
+            else{
+                //user denied permission for location access
+            }
+        }
 
     }
 }

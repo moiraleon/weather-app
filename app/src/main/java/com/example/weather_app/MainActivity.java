@@ -2,9 +2,11 @@ package com.example.weather_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -40,6 +42,15 @@ public class MainActivity extends AppCompatActivity {
         mweatherIcon=findViewById(R.id.weatherIcon);
         mCityFinder=findViewById(R.id.cityFinder);
         NameofCity=findViewById(R.id.cityName);
+
+        mCityFinder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, cityFinder.class);
+                startActivity(intent);
+
+             }
+        });
 
     }
 }

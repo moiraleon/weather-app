@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Weatherapp">
         <activity
+            android:name=".cityFinder"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

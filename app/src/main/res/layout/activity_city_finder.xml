@@ -29,12 +29,12 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30sp"
         android:textSize="20sp"
+        android:background="@drawable/edittextdesign"
         android:textColor="@color/black"
         android:imeOptions="actionGo"
         android:id="@+id/searchCity"
         android:inputType="textAutoCorrect"
         android:gravity="center_horizontal|center_vertical"
-
         >
 
     </EditText>

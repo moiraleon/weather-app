@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/buttondesign.xml" value="0.2640625" />
+        <entry key="app/src/main/res/drawable/edittextdesign.xml" value="0.2640625" />
         <entry key="app/src/main/res/layout/activity_city_finder.xml" value="0.23385416666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.254981884057971" />
       </map>

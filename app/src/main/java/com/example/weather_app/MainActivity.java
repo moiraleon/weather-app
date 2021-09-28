@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     final String API_KEY = "89e5ced9260f0649a78adcc4aab39776";
-    final String WEATHER_URL = "https://home.openweathermap.org/data/2.5/weather";
+    final String WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather";
 
     final long MIN_TIME = 5000;
     final float MIN_DISTANCE = 1000;
@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
             return;
         }
         mLocationManager.requestLocationUpdates(Location_Provider, MIN_TIME, MIN_DISTANCE, mLocationListener);

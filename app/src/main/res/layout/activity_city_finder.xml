@@ -16,7 +16,8 @@
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="-8dp"
-        android:src="@drawable/left">
+        android:src="@drawable/left"
+        android:id="@+id/backButton">
 
     </ImageView>
 
